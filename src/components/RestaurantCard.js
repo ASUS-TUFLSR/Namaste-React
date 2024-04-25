@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import {CDN_URL} from '../utils/constant'
 
 const RestaurantCard = (props) => {
@@ -8,18 +10,28 @@ const RestaurantCard = (props) => {
      
 
     return (
-        <div className="res-card">
-            <img className="res-logo" 
-           alt="res-logo"
+
+        <Card className='res-card' >
+      <Card.Img className='res-logo' src={  CDN_URL + cloudinaryImageId}     />
+      <Card.Body className='el-card' >
+        <Card.Title><p>{name}</p></Card.Title>
+        <Card.Text>
+             <p>{cuisines.join(", ")}</p>
+            <p>{avgRating + " stars"}</p>
+            <p>{costForTwo}</p>
+        </Card.Text>
+      
+      </Card.Body>
+    </Card>
+        // <div className="res-card">
+        //     <img className="res-logo" 
+        //    alt="res-logo"
            
-           src={  CDN_URL + cloudinaryImageId}
-            />
-            <h4>{name}</h4>
-            <h4>{cuisines.join(", ")}</h4>
-            <h4>{avgRating + " stars"}</h4>
-            <h4>{costForTwo}</h4>
+        //    src={  CDN_URL + cloudinaryImageId}
+        //     />
+        //     
             
-          </div> 
+        //   </div> 
      )
 }
 
