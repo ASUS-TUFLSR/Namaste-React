@@ -2,13 +2,17 @@ import React from 'react'
 import RestaurantCard from './RestaurantCard'
 import { resList } from '../utils/mockData'
 import {Row, Col} from 'react-bootstrap'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
   
 const Body = () => {
 
     const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+
+    useEffect(()=>{
+      console.log("useEffect");
+    }, []);
 
   
     return (
@@ -18,7 +22,7 @@ const Body = () => {
            setListOfRestaurants(filteredList);
            console.log(filteredList)
         }} >
-          Filter <i class="fas fa-search"></i></button>
+          Filter <i className="fas fa-search"></i></button>
              
            </Col>
          <Row>

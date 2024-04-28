@@ -25,6 +25,11 @@
     margin: 10px;
 }
 
+.nav-items>ul>li:hover {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
 /**************************    Body     ***************************/
 
 .search {

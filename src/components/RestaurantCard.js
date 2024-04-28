@@ -16,9 +16,9 @@ const RestaurantCard = (props) => {
       <Card.Body className='el-card' >
         <Card.Title><p>{name}</p></Card.Title>
         <Card.Text>
-             <p>{cuisines.join(", ")}</p>
-            <p>{avgRating + " stars"}</p>
-            <p>{costForTwo}</p>
+             <>{cuisines.join(", ")}</>
+            <>{avgRating + " stars"}</>
+            <>{costForTwo}</>
         </Card.Text>
       
       </Card.Body>
