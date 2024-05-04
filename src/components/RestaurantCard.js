@@ -14,13 +14,13 @@ const RestaurantCard = (props) => {
         <Card className='res-card' >
       <Card.Img className='res-logo' src={  CDN_URL + cloudinaryImageId}     />
       <Card.Body className='el-card' >
-        <Card.Title><p>{name}</p></Card.Title>
-        <Card.Text>
-             <>{cuisines.join(", ")}</>
-            <>{avgRating + " stars"}</>
-            <>{costForTwo}</>
-        </Card.Text>
-      
+        <Card.Title><span>{name}</span></Card.Title>
+        <>
+             <p>{cuisines.join(", ")}</p>
+            <p>{avgRating + " stars"}</p>
+            <p>{costForTwo}</p>
+        </>
+       {/* <Card.text/> */}
       </Card.Body>
     </Card>
         // <div className="res-card">

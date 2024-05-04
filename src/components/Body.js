@@ -1,6 +1,5 @@
 import React from 'react'
 import RestaurantCard from './RestaurantCard'
-import { resList } from '../utils/mockData'
 import {Row, Col} from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 
@@ -8,7 +7,7 @@ import { useState, useEffect } from 'react'
   
 const Body = () => {
 
-    const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+    const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
     useEffect(()=>{
      fetchData();
@@ -19,7 +18,8 @@ const Body = () => {
       const json = await data.json();
 
       console.log(json);
-      // setListOfRestaurants(json.data.cards);
+      setListOfRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+
     }
 
     return (
