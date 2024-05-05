@@ -2,6 +2,7 @@ import React from 'react'
 import RestaurantCard from './RestaurantCard'
 import {Row, Col} from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+import Loader from './Loader'
 
 
   
@@ -9,6 +10,11 @@ const Body = () => {
 
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
+    const [searchText, setSearchText] = useState("");
+
+    console.log("Rendering");
+    //Whenever we try to change state variable react re-renders our whole body component
+// -30:00
     useEffect(()=>{
      fetchData();
     }, []);
@@ -18,20 +24,40 @@ const Body = () => {
       const json = await data.json();
 
       console.log(json);
-      setListOfRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+      setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
+    }
+    
+//Conditional Rendering : rending on the basis of contions is 'conditional rendering'
+    if(listOfRestaurants.length === 0){
+      return <Loader/>
     }
 
     return (
         <>
-        <Col><button className='btn btn-dark' onClick={() => {
+
+<Col>        
+<div className='filter' style={{display:"flex"}} >
+        <button className='btn btn-dark' onClick={() => {
           const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 3.9 );
            setListOfRestaurants(filteredList);
-           console.log(filteredList)
         }} >
           Filter <i className="fas fa-search"></i></button>
-             
-           </Col>
+          </div>
+
+          <div className='search' >
+            <input type='text' className='search-box my-2' value={searchText} 
+            onChange={(e) => {
+                  setSearchText(e.target.value);
+            }} />
+            <button className='btn btn-dark my-3' style={{margin:"10px", lineHeight:"0.2rem"}}
+              onClick={() => {
+                console.log(searchText)
+              }}
+            > Search</button>
+          </div>
+          </Col>
+       
          <Row>
             
     {listOfRestaurants.map((restaurant) => (
