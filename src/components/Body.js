@@ -9,6 +9,7 @@ import Loader from './Loader'
 const Body = () => {
 
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
+    const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
     const [searchText, setSearchText] = useState("");
 
@@ -25,6 +26,7 @@ const Body = () => {
 
       console.log(json);
       setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
     }
     
@@ -49,23 +51,28 @@ const Body = () => {
             <input type='text' className='search-box my-2' value={searchText} 
             onChange={(e) => {
                   setSearchText(e.target.value);
+              
             }} />
             <button className='btn btn-dark my-3' style={{margin:"10px", lineHeight:"0.2rem"}}
               onClick={() => {
                 console.log(searchText)
-              }}
+                const filteredRestaurant = listOfRestaurants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
+                setFilteredRestaurant(filteredRestaurant);
+              
+              }} 
             > Search</button>
           </div>
           </Col>
        
          <Row>
             
-    {listOfRestaurants.map((restaurant) => (
+    {filteredRestaurant.map((restaurant) => (
          <Col key={restaurant.info.id} sm={12} md={6} lg={4} xl={3} > 
         <RestaurantCard resData={restaurant}/>
+        
          </Col>
     ))}
-       
+      
     </Row> 
          </>
         // <div className="body" >
