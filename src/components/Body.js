@@ -20,20 +20,24 @@ const Body = () => {
      fetchData();
     }, []);
 
-    const fetchData = async () => {
-      const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.61610&lng=73.72860&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const fetchData = async () => { 
+      const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.61610&lng=73.72860&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
       const json = await data.json();
 
       console.log(json);
-      setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+     
 
     }
     
-//Conditional Rendering : rending on the basis of contions is 'conditional rendering'
+//Conditional Rendering : rending on the basis of conditions is 'conditional rendering'
     if(listOfRestaurants.length === 0){
       return <Loader/>
     }
+
+   
+    
 
     return (
         <>
@@ -41,8 +45,8 @@ const Body = () => {
 <Col>        
 <div className='filter' style={{display:"flex"}} >
         <button className='btn btn-dark' onClick={() => {
-          const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 3.9 );
-           setListOfRestaurants(filteredList);
+          const filteredList = filteredRestaurant.filter((res) => res.info.avgRating > 3.9 );
+           setFilteredRestaurant(filteredList);
         }} >
           Filter <i className="fas fa-search"></i></button>
           </div>
