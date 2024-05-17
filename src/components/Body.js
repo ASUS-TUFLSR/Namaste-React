@@ -3,6 +3,7 @@ import RestaurantCard from './RestaurantCard'
 import {Row, Col} from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import Loader from './Loader'
+import { Link } from 'react-router-dom'
 
 
   
@@ -22,11 +23,14 @@ const Body = () => {
 
     const fetchData = async () => { 
       const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.61610&lng=73.72860&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+      // const datas = await fetch('https://www.swiggy.com/dapi/restaurants/list/update');
       const json = await data.json();
 
       console.log(json);
-      setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      // setListOfRestaurants(json?.datas?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      // setFilteredRestaurant(json?.datas?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
      
 
     }
@@ -72,7 +76,7 @@ const Body = () => {
             
     {filteredRestaurant.map((restaurant) => (
          <Col key={restaurant.info.id} sm={12} md={6} lg={4} xl={3} > 
-        <RestaurantCard resData={restaurant}/>
+       <Link to={"/restaurants/" + restaurant.info.id} ><RestaurantCard resData={restaurant}/></Link> 
         
          </Col>
     ))}

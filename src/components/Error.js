@@ -8,7 +8,7 @@ const Error = () => {
     console.log(err);
 
     return <div>
-           <h3>Opps! something went wrong</h3>
+           <h3>Oops! something went wrong</h3>
            <h4>{err.status}: {err.statusText}</h4>
            <div style={{textAlign:"center"}} >
            <img style={{ height:"400px", width:"600px"}} src={SW_W} />

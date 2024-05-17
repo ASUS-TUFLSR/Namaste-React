@@ -30,6 +30,23 @@
     background-color: #343a40;
     border-color: #343a40;
 }
+.link {
+    text-decoration: none;
+    color: none;
+    background-color: none;
+    text-decoration-line: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+}
+
+.link:hover {
+    text-decoration: none;
+    color: #fff;
+    border-color: #343a40;
+    background-color: #343a40;
+    text-decoration-line: none;
+}
 /**************************    Body     ***************************/
 
 .search {

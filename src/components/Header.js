@@ -1,6 +1,7 @@
 import React from 'react'
 import { LOGO_URL } from '../utils/constant'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -22,10 +23,10 @@ const Header = () => {
 
            <div className="nav-items">
                <ul>
-                 <li>Home</li>
-                 <li>About Us</li>
-                 <li><i className="fa-solid fa-envelope"></i> Contact Us</li>
-                 <li><i className='fas fa-shopping-cart' ></i> Cart</li>
+                 <li><Link className='link' to='/' >Home</Link></li>
+                 <li><Link className='link' to='/About' >About Us</Link></li>
+                 <li><i className="fa-solid fa-envelope"></i><Link className='link' to='/Contact' >Contact Us</Link> </li>
+                 <li><i className='fas fa-shopping-cart' ></i><Link className='link' to='/Cart' >Cart</Link> </li>
                  <button className='btn btn-light my-3'
                  onClick={()=>{
                   btnNameReact === "SignIn" ? setbtnNameReact("SignUp") : setbtnNameReact("SignIn") ;
@@ -33,7 +34,6 @@ const Header = () => {
                  }}
                  >{btnNameReact}</button>
                </ul>
-              
              </div>
         
         </div>
