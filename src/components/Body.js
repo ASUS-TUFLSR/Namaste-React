@@ -4,6 +4,8 @@ import {Row, Col} from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import Loader from './Loader'
 import { Link } from 'react-router-dom'
+import useInternetStatus from '../utils/useInternetStatus'
+import { resList } from '../utils/dummy'
 
 
   
@@ -14,6 +16,8 @@ const Body = () => {
 
     const [searchText, setSearchText] = useState("");
 
+    
+
     console.log("Rendering");
     //Whenever we try to change state variable react re-renders our whole body component
 // -30:00
@@ -23,31 +27,28 @@ const Body = () => {
 
     const fetchData = async () => { 
       const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.61610&lng=73.72860&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
-      // const datas = await fetch('https://www.swiggy.com/dapi/restaurants/list/update');
       const json = await data.json();
 
       console.log(json);
+
       setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
       setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      // setListOfRestaurants(json?.datas?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      // setFilteredRestaurant(json?.datas?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-     
 
     }
-    
-//Conditional Rendering : rending on the basis of conditions is 'conditional rendering'
-    if(listOfRestaurants.length === 0){
+
+    const onlineStatus = useInternetStatus();
+
+    if(onlineStatus === false) return <h1>Looks like you are offline, please check your internet Connection</h1>
+ 
+
+   if(listOfRestaurants.length === 0){
       return <Loader/>
     }
-
-   
-    
-
+  
     return (
         <>
-
 <Col>        
-<div className='filter' style={{display:"flex"}} >
+<div className='filter py-2' style={{display:"flex"}} >
         <button className='btn btn-dark' onClick={() => {
           const filteredList = filteredRestaurant.filter((res) => res.info.avgRating > 3.9 );
            setFilteredRestaurant(filteredList);
