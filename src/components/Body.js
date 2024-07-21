@@ -18,7 +18,7 @@ const Body = () => {
 
     
 
-    console.log("Rendering");
+    console.log("Rendering" , listOfRestaurants);
     //Whenever we try to change state variable react re-renders our whole body component
 // -30:00
     useEffect(()=>{
@@ -31,8 +31,11 @@ const Body = () => {
 
       console.log(json);
 
-      setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      // setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      // setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      
+      setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      setFilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
     }
 
