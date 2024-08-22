@@ -2,38 +2,36 @@ import React from 'react';
 import Loader from './Loader';
 import { useParams } from "react-router-dom"
 import useRestaurantMenu from '../utils/useRestaurantMenu';
+import RestaurantCatergory from './RestaurantCatergory';
 
 const RestaurantMenu = () => {
 
-  const {resId}  = useParams();
-
+    const {resId}  = useParams();
     const resInfo = useRestaurantMenu(resId);
 
-    
+    if (resInfo === null) return <Loader/>;
 
-        if (resInfo === null) return <Loader/>;
+     const {name,cuisines,costForTwoMessage} = resInfo?.cards[2]?.card?.card?.info
+   
 
+     //const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+   // console.log(resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1].card.card);
 
-         const { itemCards } = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-
-
+    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c) => c.card?.card?.["@type"] === 
+    "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" )
+     //console.log(categories);
 
     return  (
-    <div className="menu" style={{padding:"12px"}} >
-           <h2>{resInfo?.cards[0]?.card?.card?.text}</h2>
-           <h5>{resInfo?.cards[2]?.card?.card?.info?.cuisines.join(", ")}</h5>
-           <ul>
-            <h3>Menu :</h3>
-            {itemCards.map(item => <li key={item.card.info.id} >{item.card.info.name} - ₹{item.card.info.defaultPrice/100 || item.card.info.price/100} </li>)}
-           </ul>
-           <ul>
-            <li><h5>Cost for Two: ${resInfo?.cards[2]?.card?.card?.info?.costForTwo/100}</h5></li>
-            <li>Delivery Time<h5>{resInfo?.cards[2]?.card?.card?.info?.sla?.deliveryTime}mins</h5></li>
-        
-           </ul>
+    <div className="text-center p-3 " >
+           <h2 className='font-extrabold text-lg' >{name}</h2>
+           <p>{cuisines.join(", ")} : {costForTwoMessage}</p>
+           
+            {categories.map((category) =>
+                 (<RestaurantCatergory   data={category?.card?.card} />))}
            
     </div>
     );
+   
 }
 
 export default RestaurantMenu;

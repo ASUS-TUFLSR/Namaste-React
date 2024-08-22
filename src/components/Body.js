@@ -18,7 +18,7 @@ const Body = () => {
 
     
 
-    console.log("Rendering" , listOfRestaurants);
+    // console.log("Rendering" , listOfRestaurants);
     //Whenever we try to change state variable react re-renders our whole body component
 // -30:00
     useEffect(()=>{
@@ -39,6 +39,8 @@ const Body = () => {
 
     }
 
+   
+
     const onlineStatus = useInternetStatus();
 
     if(onlineStatus === false) return <h1>Looks like you are offline, please check your internet Connection</h1>
@@ -47,6 +49,7 @@ const Body = () => {
    if(listOfRestaurants.length === 0){
       return <Loader/>
     }
+    console.log("Rendering" , listOfRestaurants);
   
     return (
         <>
