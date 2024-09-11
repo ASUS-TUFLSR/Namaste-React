@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Loader from './Loader';
 import { useParams } from "react-router-dom"
 import useRestaurantMenu from '../utils/useRestaurantMenu';
@@ -8,6 +8,11 @@ const RestaurantMenu = () => {
 
     const {resId}  = useParams();
     const resInfo = useRestaurantMenu(resId);
+
+    const [showIndex, setShowIndex] = useState(null);
+
+   
+
 
     if (resInfo === null) return <Loader/>;
 
@@ -26,8 +31,13 @@ const RestaurantMenu = () => {
            <h2 className='font-extrabold text-lg' >{name}</h2>
            <p>{cuisines.join(", ")} : {costForTwoMessage}</p>
            
-            {categories.map((category) =>
-                 (<RestaurantCatergory   data={category?.card?.card} />))}
+            {categories.map((category, index) =>
+                 (<RestaurantCatergory  
+                     key={category?.card?.card?.title} 
+                     data={category?.card?.card} 
+                     showItems={index === showIndex ? true : false}
+                     setShowIndex={() => setShowIndex(index)}
+                     />))}
            
     </div>
     );
