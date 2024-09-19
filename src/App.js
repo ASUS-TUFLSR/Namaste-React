@@ -11,6 +11,8 @@ import { createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Loader from "./components/Loader";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -20,7 +22,7 @@ const AppLayout = () => {
 
  //Autentication code for user
   const [userName, setUserName] = useState();
-
+// debugger;
     useEffect(() => {
     //Make an API Call to fetch/send user and password 
      
@@ -32,13 +34,15 @@ const AppLayout = () => {
 
     
     return (
-        <UserContext.Provider value={{LoggedInUser : userName, setUserName}} >
+     <Provider store={appStore}> 
+      <UserContext.Provider value={{LoggedInUser : userName, setUserName}} >
         <div className="app" >
             <Header/>
             <Outlet/>
             <Footer/>
         </div>
-        </UserContext.Provider> 
+      </UserContext.Provider> 
+     </Provider>
     )
 }
 
