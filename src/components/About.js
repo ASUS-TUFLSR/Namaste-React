@@ -18,11 +18,11 @@ class About extends Component{
     render(){
         //console.log("Parent Render");
 
- return <div style={{padding:"10px"}}>
+ return <div className="p-10 text-center">
 
         <h1>This is Ordero</h1>
           <div>
-             LoggedIn:User
+             User:
                <UserContext.Consumer>
                 {({LoggedInUser}) => <h1 className="text-lg font-bold" >{LoggedInUser}</h1>}
                </UserContext.Consumer>

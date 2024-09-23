@@ -1,8 +1,11 @@
 const Grocery = () => {
     return <>
-    <h1>Now we have our own online grocery store,
-         and it has a lot of child components in this web page!!!
+    <div className="text-center" >
+        <h1 >Our own online grocery store is in production,
+        stay tuned !!!
     </h1>
+    </div>
+    
     </>
 }
 

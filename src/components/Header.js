@@ -28,7 +28,7 @@ const Header = () => {
    const onlineStatus = useInternetStatus();
 
    const nameChange = () => {
-         btnNameReact === "Login" ? setbtnNameReact("SignUp") : setbtnNameReact("Login") ;
+         btnNameReact === "Login" ? setbtnNameReact("Logout") : setbtnNameReact("Login") ;
                   btnName === "Ordero" ?  setNameReact("Tabemono") :  setNameReact("Ordero");
    };
   
