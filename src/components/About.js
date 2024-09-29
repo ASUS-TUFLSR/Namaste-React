@@ -8,15 +8,9 @@ class About extends Component{
 
    constructor(props){
     super(props);
-   // console.log("Parent Constructor");
-   }
-
-   componentDidMount(){
-   //console.log("Parent Component Did Mount");
    }
 
     render(){
-        //console.log("Parent Render");
 
  return <div className="p-10 text-center">
 
@@ -28,7 +22,7 @@ class About extends Component{
                </UserContext.Consumer>
          </div>
              <p>This website wil get you delicious food delivered by your doorsteps</p>
-            <UserClass name={"First"} location={"Japan(Class)"} />
+              <UserClass name={"First"} location={"Japan(Class)"} />
          </div>
     }
 }

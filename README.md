@@ -33,3 +33,12 @@
  - disable parcel's babel config file
  - Jest Configuration - npx jest --init
  - install jsdom library
+ - installed this @babel/preset-react - to make JSX work in test cases
+ - Include it in babel.config.js file - @babel/preset-react
+ - Install npm i -D @testing-library/jest-dom 
+ - to cheack whether our application is rendered or not we use toBeInTheDocument();
+ - If you don't want to specify the element then you can use (/element/) - the inside element is called regex 
+ - we cannot make api/network call while using test cases-refer to Search.test.js- because we are not running out
+   test cases on browser we are running it on our own machine. it is runnning on jsdom which browser like thing but not an actual browser
+- we can use watch-test : jest --watch it would do HMR
+ 

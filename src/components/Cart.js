@@ -32,8 +32,6 @@ const Cart = () => {
     </div>
 }
 
-{/* <div className='w-6/12 m-auto' >
-        <ItemList items={cartItems}/>
-      </div> */}
+
 
 export default Cart;

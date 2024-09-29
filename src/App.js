@@ -27,7 +27,7 @@ const AppLayout = () => {
     //Make an API Call to fetch/send user and password 
      
         const data = {
-            name: 'Manmit Pal',
+            name: 'Default User',
         };
         setUserName(data.name);
     }, [])
